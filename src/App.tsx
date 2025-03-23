@@ -1,8 +1,13 @@
+import Layout from "./components/layout/Layout";
+import Hero from "./components/Hero";
+
 function App() {
   return (
-    <div className="container mx-auto">
-      <h1 className="text-lg">Starter</h1>
-    </div>
+    <>
+      <Layout>
+        <Hero />
+      </Layout>
+    </>
   );
 }
 
