@@ -4,13 +4,11 @@ import MobileMenu from "../MobileMenu";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
+    <div className="min-h-screen bg-amber-50">
       <Navbar />
       <MobileMenu />
-      <div className="container max-w-7xl px-5 lg:px-0 mx-auto h-screen">
-        {children}
-      </div>
-    </>
+      <main className="relative">{children}</main>
+    </div>
   );
 };
 

@@ -26,18 +26,18 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-full w-full">
-      <div className="h-[100vh] w-screen absolute left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden -z-50">
+    <section className="relative h-screen w-full">
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
         <div className="w-full absolute top-0 left-0 z-2 h-80 bg-gradient-to-b from-black to-black/0"></div>
         <img
-          className="top-0 object-cover w-full h-full scale-x-[-1]"
+          className="w-full h-full object-cover scale-x-[-1]"
           src="/images/header_img.jpg"
           alt="header_img"
         />
         <div className="w-full absolute bottom-0 left-0 z-2 h-80 bg-gradient-to-t from-black to-black/0"></div>
       </div>
 
-      <div className="container mx-auto h-full max-w-7xl py-20 grid grid-rows-2">
+      <div className="container relative mx-auto h-full max-w-7xl px-5 z-10 lg:px-0 py-20 grid grid-rows-2">
         <div className="h-full w-full flex items-start justify-start pt-24">
           <div className="flex flex-col gap-3 text-white">
             <h3 className="text-xl md:text-3xl font-bold">🌿 マッチャの故郷</h3>
@@ -45,7 +45,6 @@ const Hero = () => {
               {headerTextLines.map((line, lineIndex) => (
                 <div key={lineIndex} className="flex flex-wrap gap-x-3">
                   {line.map((word, i) => {
-                    // Calculate and increment the global word index
                     const currentWordIndex = wordIndex++;
                     return (
                       <motion.div
