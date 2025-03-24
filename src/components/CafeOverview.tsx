@@ -24,7 +24,7 @@ const CafeOverview = () => {
   };
 
   return (
-    <div className="relative h-[100vh] w-full">
+    <div className="relative h-screen w-full">
       <motion.div
         ref={imageRef}
         initial={{ opacity: 0, scale: 0.8 }}
@@ -51,38 +51,42 @@ const CafeOverview = () => {
 
       <div className="container mx-auto max-w-7xl h-full relative">
         <div className="h-full flex flex-col lg:justify-end lg:items-end">
-          {/* Vertical Text */}
           <div className="hidden lg:block absolute right-0 top-1/3 -translate-y-1/2 writing-vertical-rl text-zinc-950 text-4xl font-bold tracking-widest w-1">
             船長がどこにいるか
           </div>
+          <div className="hidden md:block absolute left-0 -bottom-1/6 m-5 -translate-y-1/2 writing-vertical-rl text-zinc-950 text-4xl font-bold tracking-widest w-1">
+            船長がどこにいるか
+          </div>
 
-          <div className="h-full py-14 w-full lg:w-fit flex flex-col gap-y-10 md:gap-y-16 items-start justify-start md:justify-end px-5 lg:px-0">
-            <div className="flex w-full md:w-auto flex-col gap-2 ">
-              <div className="flex flex-wrap w-56 lg:w-auto items-center gap-x-1">
-                {cafeOverViewTextLines.map((word, i) => {
-                  return (
-                    <motion.div
-                      key={i}
-                      ref={ref}
-                      initial="initial"
-                      animate={isInview ? "animate" : ""}
-                      custom={i}
-                      variants={pullupVariant}
-                      className="text-zinc-950 font-bold text-3xl"
-                    >
-                      {word === "" ? <span>&nbsp;</span> : word}
-                    </motion.div>
-                  );
-                })}
+          <div className="h-full py-14 w-full lg:w-[30vw] flex flex-col gap-y-10 md:gap-y-16 items-start justify-start md:justify-end px-5 lg:px-0">
+            <div className="flex w-full lg:w-auto flex-col gap-2 items-start md:items-end">
+              <div className="flex flex-col items-start gap-2">
+                <div className="flex flex-wrap w-56 md:w-auto items-center gap-x-1">
+                  {cafeOverViewTextLines.map((word, i) => {
+                    return (
+                      <motion.div
+                        key={i}
+                        ref={ref}
+                        initial="initial"
+                        animate={isInview ? "animate" : ""}
+                        custom={i}
+                        variants={pullupVariant}
+                        className="text-zinc-950 font-bold text-3xl"
+                      >
+                        {word === "" ? <span>&nbsp;</span> : word}
+                      </motion.div>
+                    );
+                  })}
+                </div>
+                <h4 className="flex w-fit items-center text-zinc-500 lg:text-lg gap-x-2">
+                  <MapPin className="w-5 h-5" />
+                  <span>JL Idjen Boulevard, Malang, East Java</span>
+                </h4>
               </div>
-              <h4 className="flex w-[68vw] md:w-auto items-center text-zinc-500 text-lg gap-x-2">
-                <MapPin className="w-6 h-6" />
-                <span>Located on Idjen Boulevard, Malang, East Java</span>
-              </h4>
             </div>
             <div className="flex flex-col gap-y-4 w-full items-end">
-              <div className="flex w-full flex-col justify-between md:flex-row gap-4 md:gap-10">
-                <p className="text-sm text-zinc-500 text-justify w-full md:w-[30vw] tracking-wide">
+              <div className="flex w-full flex-col justify-end md:flex-row gap-4 md:gap-10">
+                <p className="text-sm text-zinc-500 text-justify w-full md:w-[50vw] tracking-wide">
                   Savor the rich flavors of hand-selected matcha, sourced from
                   the finest Japanese tea farms. Every sip is a blend of
                   tradition and craftsmanship, bringing you the perfect balance

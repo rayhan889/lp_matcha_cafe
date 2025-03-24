@@ -37,12 +37,12 @@ const Hero = () => {
         <div className="w-full absolute bottom-0 left-0 z-2 h-80 bg-gradient-to-t from-black to-black/0"></div>
       </div>
 
-      <div className="container relative mx-auto h-full max-w-7xl px-5 z-10 lg:px-0 py-20 grid grid-rows-2">
-        <div className="h-full w-full flex items-start justify-start pt-24">
+      <div className="container relative mx-auto h-full max-w-7xl px-5 z-10 lg:px-0 py-5 md:py-20 grid grid-rows-2">
+        <div className="h-full w-full flex items-start justify-start pt-14 md:pt-24">
           <div className="flex flex-col gap-3 text-white">
-            <h3 className="text-xl font-thin w-[70vw] md:w-auto">
-              🌿 Authentic Japanese Matcha, Crafted for You!
-            </h3>
+            <div className="text-xs md:text-sm w-[54vw] md:w-fit tracking-tighter uppercase py-3 px-5 rounded-full border border-zinc-500 backdrop-blur-sm bg-black/10">
+              🌿 Authentic Japanese Matcha, Crafted for You
+            </div>
             <div ref={ref} className="flex flex-col">
               {headerTextLines.map((line, lineIndex) => (
                 <div key={lineIndex} className="flex flex-wrap gap-x-5">

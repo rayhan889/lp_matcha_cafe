@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { Menu, X } from "lucide-react";
 import { navLinks } from "../constants/navlinks";
@@ -6,6 +6,17 @@ import { motion } from "motion/react";
 
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleToggleOpen = () => {
     setIsOpen(prev => !prev);
@@ -14,8 +25,10 @@ const MobileMenu = () => {
   return (
     <>
       <nav
-        className={`fixed left-0 right-0 top-0 z-50 flex h-20 items-center justify-between ${
-          isOpen ? "backdrop-blur-sm bg-zinc-950/55" : "bg-transparent"
+        className={`fixed left-0 right-0 top-0 z-50 flex h-20 items-center justify-between transition-colors duration-300 ${
+          isScrolled || isOpen
+            ? "bg-zinc-950/60 backdrop-blur-sm"
+            : "bg-transparent"
         } lg:hidden`}
       >
         <div className="container mx-auto flex w-full max-w-7xl px-5 items-center justify-between">
@@ -59,7 +72,7 @@ const MobileMenu = () => {
           isOpen ? "-translate-y-0 mt-20" : "-translate-y-full"
         }`}
       >
-        <div className="h-full overflow-y-auto backdrop-blur-sm bg-zinc-950/55 px-3 py-4 shadow-sm flex flex-col items-center gap-14">
+        <div className="h-full overflow-y-auto backdrop-blur-sm bg-zinc-950/60 px-3 py-4 shadow-sm flex flex-col items-center gap-14">
           <ul className="flex flex-col justify-center items-center gap-14">
             {isOpen && (
               <>
@@ -78,7 +91,7 @@ const MobileMenu = () => {
                     }}
                   >
                     <Link to={link.path}>
-                      <span className="text-white transition-colors delay-75 text-lg">
+                      <span className="text-white/75 hover:text-white transition-colors duration-300 text-lg">
                         {link.name}
                       </span>
                     </Link>
@@ -87,9 +100,13 @@ const MobileMenu = () => {
               </>
             )}
           </ul>
-          <button className="cursor-pointer rounded-full bg-white text-zinc-950 px-6 py-2 hover:scale-105 transition-all font-medium">
+          <motion.button
+            className="cursor-pointer rounded-full bg-white text-zinc-950 px-6 py-2 hover:bg-zinc-100 transition-all duration-300 font-medium"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
             Contact Us
-          </button>
+          </motion.button>
         </div>
       </aside>
     </>
