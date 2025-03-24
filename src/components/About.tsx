@@ -23,10 +23,10 @@ const About = () => {
   };
 
   return (
-    <div className=" h-fit container mx-auto max-w-7xl px-5 lg:px-0 py-14">
+    <div className="h-fit lg:h-[40vh] container mx-auto max-w-7xl px-5 lg:px-0 py-14 flex items-center">
       <div className="flex flex-col w-full gap-y-10">
         <div className="flex flex-col md:flex-row items-start justify-between gap-y-10 md:gap-0">
-          <div className="flex items-center gap-x-3">
+          <div className="flex items-center gap-x-1">
             {aboutUsTextLines.map((word, i) => {
               return (
                 <motion.div

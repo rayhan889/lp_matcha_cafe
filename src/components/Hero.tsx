@@ -6,9 +6,9 @@ const Hero = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   const headerTextLines = [
-    ["Authentic"],
-    ["Japanese", "Matcha,"],
-    ["Crafted", "for", "You!"],
+    ["本物"],
+    ["日本語", "マッチー,"],
+    ["手作り", "について", "あなた!"],
   ];
   let wordIndex = 0;
 
@@ -40,10 +40,12 @@ const Hero = () => {
       <div className="container relative mx-auto h-full max-w-7xl px-5 z-10 lg:px-0 py-20 grid grid-rows-2">
         <div className="h-full w-full flex items-start justify-start pt-24">
           <div className="flex flex-col gap-3 text-white">
-            <h3 className="text-xl md:text-3xl font-bold">🌿 マッチャの故郷</h3>
+            <h3 className="text-xl font-thin w-[70vw] md:w-auto">
+              🌿 Authentic Japanese Matcha, Crafted for You!
+            </h3>
             <div ref={ref} className="flex flex-col">
               {headerTextLines.map((line, lineIndex) => (
-                <div key={lineIndex} className="flex flex-wrap gap-x-3">
+                <div key={lineIndex} className="flex flex-wrap gap-x-5">
                   {line.map((word, i) => {
                     const currentWordIndex = wordIndex++;
                     return (
@@ -53,7 +55,7 @@ const Hero = () => {
                         animate={isInview ? "animate" : ""}
                         custom={currentWordIndex}
                         variants={pullupVariant}
-                        className="text-5xl md:text-7xl font-extrabold tracking-tighter"
+                        className="text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter"
                       >
                         {word === "" ? <span>&nbsp;</span> : word}
                       </motion.div>
