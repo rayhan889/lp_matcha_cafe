@@ -55,7 +55,7 @@ const Hero = () => {
                         animate={isInview ? "animate" : ""}
                         custom={currentWordIndex}
                         variants={pullupVariant}
-                        className="text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter"
+                        className="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter"
                       >
                         {word === "" ? <span>&nbsp;</span> : word}
                       </motion.div>

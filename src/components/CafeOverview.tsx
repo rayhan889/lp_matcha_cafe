@@ -5,10 +5,12 @@ import { Link } from "react-router";
 
 const CafeOverview = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   const cafeOverViewTextLines = ["Sneak", "Peak", "On", "Our", "Cafe"];
 
   const isInview = useInView(ref, { once: true });
+  const isImageInView = useInView(imageRef, { once: true });
 
   const pullupVariant = {
     initial: { y: 20, opacity: 0 },
@@ -23,13 +25,29 @@ const CafeOverview = () => {
 
   return (
     <div className="relative h-[100vh] w-full">
-      <div className="absolute left-0 md:top-0 bottom-0 w-full lg:w-[40vw] h-[50vh] lg:h-full">
+      <motion.div
+        ref={imageRef}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={
+          isImageInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+        }
+        transition={{
+          duration: 2,
+          ease: [0.4, 0, 0.2, 1],
+          scale: {
+            type: "spring",
+            damping: 15,
+            stiffness: 100,
+          },
+        }}
+        className="absolute left-0 md:top-0 bottom-0 w-full lg:w-[40vw] h-[50vh] lg:h-full"
+      >
         <img
           src="/images/cafe_overview.jpg"
           alt="cafe_overview"
           className="object-cover h-full w-full"
         />
-      </div>
+      </motion.div>
 
       <div className="container mx-auto max-w-7xl h-full relative">
         <div className="h-full flex flex-col lg:justify-end lg:items-end">
@@ -64,13 +82,7 @@ const CafeOverview = () => {
             </div>
             <div className="flex flex-col gap-y-4 w-full items-end">
               <div className="flex w-full flex-col justify-between md:flex-row gap-4 md:gap-10">
-                <p className="text-xs md:text-sm text-zinc-500 text-justify w-full md:w-[20rem] tracking-wide">
-                  Savor the rich flavors of hand-selected matcha, sourced from
-                  the finest Japanese tea farms. Every sip is a blend of
-                  tradition and craftsmanship, bringing you the perfect balance
-                  of taste, aroma, and wellness.
-                </p>
-                <p className="text-xs md:text-sm text-zinc-500 text-justify w-full md:w-[20rem] tracking-wide">
+                <p className="text-sm text-zinc-500 text-justify w-full md:w-[30vw] tracking-wide">
                   Savor the rich flavors of hand-selected matcha, sourced from
                   the finest Japanese tea farms. Every sip is a blend of
                   tradition and craftsmanship, bringing you the perfect balance
