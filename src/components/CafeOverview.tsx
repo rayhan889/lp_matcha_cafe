@@ -54,7 +54,7 @@ const CafeOverview = () => {
           <div className="hidden lg:block absolute right-0 top-1/3 -translate-y-1/2 writing-vertical-rl text-zinc-950 text-4xl font-bold tracking-widest w-1">
             船長がどこにいるか
           </div>
-          <div className="hidden md:block absolute left-0 -bottom-1/6 m-5 -translate-y-1/2 writing-vertical-rl text-zinc-950 text-4xl font-bold tracking-widest w-1">
+          <div className="lg:hidden hidden md:block absolute left-0 -bottom-1/6 m-5 -translate-y-1/2 writing-vertical-rl text-zinc-950 text-4xl font-bold tracking-widest w-1">
             船長がどこにいるか
           </div>
 
