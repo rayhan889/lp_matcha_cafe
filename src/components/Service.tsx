@@ -82,7 +82,7 @@ const Service = () => {
                 animate={isCardInView ? "animate" : ""}
                 variants={cardPullupVariant}
                 custom={i}
-                className={`flex flex-col w-full items-center space-y-6 group ${
+                className={`flex flex-col w-full items-center space-y-6 mb-10 md:mb-0 group ${
                   i === services.length - 1 ? "md:col-span-2" : ""
                 }`}
               >
