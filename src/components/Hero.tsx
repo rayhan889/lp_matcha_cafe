@@ -36,11 +36,20 @@ const Hero = () => {
     <section className="relative h-screen w-full" id="hero">
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <div className="w-full absolute top-0 left-0 z-2 h-80 bg-gradient-to-b from-black to-black/0"></div>
-        <img
-          className="w-full h-full object-cover scale-x-[-1]"
-          src="/images/header_img.jpg"
-          alt="header_img"
-        />
+        <video
+          className="w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+        >
+          <source
+            src="https://03sla7u2w4.ufs.sh/f/fCm9YYN5XvzFfS9HB2N5XvzF7MYdt2so6x9jAUnPpZ1lVhQ8"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
         <div className="w-full absolute bottom-0 left-0 z-2 h-80 bg-gradient-to-t from-black to-black/0"></div>
       </div>
 

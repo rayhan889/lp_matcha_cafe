@@ -5,6 +5,7 @@ import CafeOverview from "./components/CafeOverview";
 import Products from "./components/Products";
 import Service from "./components/Service";
 import Offer from "./components/Offer";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Products />
         <Service />
         <Offer />
+        <Footer />
       </Layout>
     </>
   );

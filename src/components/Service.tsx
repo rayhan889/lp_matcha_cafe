@@ -73,7 +73,7 @@ const Service = () => {
               })}
             </div>
           </div>
-          <div className="w-full flex flex-col md:flex-row items-center gap-6 md:gap-14">
+          <div className="w-full lg:flex flex-col md:grid md:grid-cols-2 lg:flex-row items-center gap-6 md:gap-14">
             {services.map((service, i) => (
               <motion.div
                 key={i}
@@ -82,7 +82,9 @@ const Service = () => {
                 animate={isCardInView ? "animate" : ""}
                 variants={cardPullupVariant}
                 custom={i}
-                className="flex flex-col w-full items-center space-y-6 group"
+                className={`flex flex-col w-full items-center space-y-6 group ${
+                  i === services.length - 1 ? "md:col-span-2" : ""
+                }`}
               >
                 <div className="w-[70vw] h-[70vw] md:h-[15vw] md:w-[15vw] relative flex overflow-hidden rounded-full">
                   <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity delay-100 duration-300 w-full h-full text-4xl font-bold absolute z-20 flex items-center justify-center rounded-full bg-black/40">

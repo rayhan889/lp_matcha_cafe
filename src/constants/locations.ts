@@ -6,17 +6,17 @@ export const locations = [
   },
   {
     city: "Jakarta",
-    street: "Jl Panglima Sudirman No 9",
+    street: "Jl Soekarno Hatta No 16",
     maps: "https://goo.gl/maps/1234567890",
   },
   {
     city: "Bandung",
-    street: "Jl Panglima Sudirman No 9",
+    street: "Jl Imam Bonjol No 1",
     maps: "https://goo.gl/maps/1234567890",
   },
   {
     city: "Malang",
-    street: "Jl Panglima Sudirman No 9",
+    street: "Jl Veteran No 8",
     maps: "https://goo.gl/maps/1234567890",
   },
 ];
