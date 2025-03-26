@@ -4,6 +4,7 @@ import About from "./components/About";
 import CafeOverview from "./components/CafeOverview";
 import Products from "./components/Products";
 import Service from "./components/Service";
+import Offer from "./components/Offer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <CafeOverview />
         <Products />
         <Service />
+        <Offer />
       </Layout>
     </>
   );

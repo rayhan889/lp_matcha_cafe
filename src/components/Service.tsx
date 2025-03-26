@@ -50,7 +50,7 @@ const Service = () => {
   };
 
   return (
-    <div className="h-fit">
+    <section className="h-fit" id="service">
       <div className="container mx-auto max-w-7xl px-5 lg:px-0 w-full h-full py-5 md:py-24">
         <div className="w-full  h-full flex flex-col md:gap-24 gap-14">
           <div className="w-full flex flex-col gap-3 text-zinc-950 font-bold items-center">
@@ -121,7 +121,7 @@ const Service = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

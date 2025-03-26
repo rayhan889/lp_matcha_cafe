@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,12 +15,50 @@ const MobileMenu = () => {
       setIsScrolled(scrollPosition > 50);
     };
 
+    const observerOptions = {
+      root: null,
+      rootMargin: "-50% 0px -50% 0px",
+      threshold: 0,
+    };
+
+    const observerCallback: IntersectionObserverCallback = entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
+    navLinks.forEach(link => {
+      const element = document.getElementById(link.path);
+      if (element) observer.observe(element);
+    });
+
+    const heroSection = document.getElementById("hero");
+    if (heroSection) observer.observe(heroSection);
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const handleToggleOpen = () => {
     setIsOpen(prev => !prev);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsOpen(false);
   };
 
   return (
@@ -57,11 +96,11 @@ const MobileMenu = () => {
                   <Menu size={24} />
                 </span>
               </button>
-              <Link to="/">
+              <button onClick={() => scrollToSection("hero")}>
                 <h3 className="text-xl font-bold leading-tight tracking-wide">
                   IJOIJO
                 </h3>
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -77,8 +116,9 @@ const MobileMenu = () => {
             {isOpen && (
               <>
                 {navLinks.map((link, index) => (
-                  <motion.li
+                  <motion.button
                     key={index}
+                    onClick={() => scrollToSection(link.path)}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
@@ -91,11 +131,17 @@ const MobileMenu = () => {
                     }}
                   >
                     <Link to={link.path}>
-                      <span className="text-white/75 hover:text-white transition-colors duration-300 text-lg">
+                      <span
+                        className={` hover:text-white transition-colors duration-300 text-lg ${
+                          activeSection === link.path
+                            ? "text-white"
+                            : "text-white/45"
+                        }`}
+                      >
                         {link.name}
                       </span>
                     </Link>
-                  </motion.li>
+                  </motion.button>
                 ))}
               </>
             )}

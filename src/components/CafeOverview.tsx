@@ -24,7 +24,7 @@ const CafeOverview = () => {
   };
 
   return (
-    <div className="relative h-screen w-full">
+    <section className="relative h-screen w-full" id="cafe-overview">
       <motion.div
         ref={imageRef}
         initial={{ opacity: 0, scale: 0.8 }}
@@ -107,7 +107,7 @@ const CafeOverview = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

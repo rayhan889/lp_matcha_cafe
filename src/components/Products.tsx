@@ -76,7 +76,7 @@ const Products = () => {
   }, [activeTabKey]);
 
   return (
-    <div className="min-h-fit  bg-zinc-950">
+    <section className="min-h-fit  bg-zinc-950" id="products">
       <div className="container mx-auto max-w-7xl px-5 lg:px-0 w-full h-full py-5 md:py-24">
         <div className="w-full  h-full flex flex-col gap-10">
           <div className="w-full flex flex-col gap-3 text-white font-bold items-center">
@@ -164,7 +164,7 @@ const Products = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

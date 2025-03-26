@@ -23,7 +23,10 @@ const About = () => {
   };
 
   return (
-    <div className="h-fit lg:h-[40vh] container mx-auto max-w-7xl px-5 lg:px-0 py-14 flex items-center">
+    <section
+      className="h-fit lg:h-[40vh] container mx-auto max-w-7xl px-5 lg:px-0 py-14 flex items-center"
+      id="about"
+    >
       <div className="flex flex-col w-full gap-y-10">
         <div className="flex flex-col md:flex-row items-start justify-between gap-y-10 md:gap-0">
           <div className="flex items-center gap-x-1">
@@ -69,7 +72,7 @@ const About = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

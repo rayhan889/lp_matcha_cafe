@@ -25,8 +25,15 @@ const Hero = () => {
     }),
   };
 
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="relative h-screen w-full">
+    <section className="relative h-screen w-full" id="hero">
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <div className="w-full absolute top-0 left-0 z-2 h-80 bg-gradient-to-b from-black to-black/0"></div>
         <img
@@ -74,7 +81,10 @@ const Hero = () => {
               craftsmanship, bringing you the perfect balance of taste, aroma,
               and wellness.
             </p>
-            <button className="border border-zinc-500 cursor-pointer rounded-full bg-transparent hover:bg-white hover:text-zinc-950 transition-colors duration-300 text-white px-6 py-2 text-sm font-medium flex items-center gap-2 group">
+            <button
+              onClick={scrollToAbout}
+              className="border border-zinc-500 cursor-pointer rounded-full bg-transparent hover:bg-white hover:text-zinc-950 transition-colors duration-300 text-white px-6 py-2 text-sm font-medium flex items-center gap-2 group"
+            >
               Learn More
               <ArrowUpRight
                 size={20}

@@ -1,10 +1,10 @@
-import { Link } from "react-router";
 import { navLinks } from "../constants/navlinks";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,9 +12,46 @@ const Navbar = () => {
       setIsScrolled(scrollPosition > 50);
     };
 
+    const observerOptions = {
+      root: null,
+      rootMargin: "-50% 0px -50% 0px",
+      threshold: 0,
+    };
+
+    const observerCallback: IntersectionObserverCallback = entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
+    navLinks.forEach(link => {
+      const element = document.getElementById(link.path);
+      if (element) observer.observe(element);
+    });
+
+    const heroSection = document.getElementById("hero");
+    if (heroSection) observer.observe(heroSection);
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <nav
@@ -25,7 +62,10 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex w-full max-w-7xl items-center justify-between">
-        <Link to="/" className="hidden md:block">
+        <button
+          onClick={() => scrollToSection("hero")}
+          className="hidden md:block cursor-pointer"
+        >
           <h3
             className={`text-2xl font-bold leading-tight tracking-wide transition-colors duration-300 ${
               isScrolled ? "text-white" : "text-white"
@@ -33,22 +73,21 @@ const Navbar = () => {
           >
             IJOIJO
           </h3>
-        </Link>
+        </button>
 
         <ul className="flex items-center gap-x-2 md:gap-x-4">
           {navLinks.map((link, index) => (
             <li key={index}>
-              <Link to={link.path}>
-                <span
-                  className={`transition-colors duration-300 ${
-                    isScrolled
-                      ? "text-white/75 hover:text-white"
-                      : "text-white/75 hover:text-white"
-                  }`}
-                >
-                  {link.name}
-                </span>
-              </Link>
+              <button
+                onClick={() => scrollToSection(link.path)}
+                className={`transition-colors duration-300 cursor-pointer ${
+                  activeSection === link.path
+                    ? "text-white"
+                    : "text-white/45 hover:text-white"
+                }`}
+              >
+                {link.name}
+              </button>
             </li>
           ))}
         </ul>
